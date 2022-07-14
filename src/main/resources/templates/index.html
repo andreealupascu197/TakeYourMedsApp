@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Take your meds!</title>
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+          crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container my-2">
+    <h1>Take your Meds!</h1>
+    <br>
+
+    <a th:href="@{/showNewMedicamentForm}" class="btn btn-primary">Add Medicament</a>
+    <br><br>
+
+    <table border="1" class="table table-striped table-responsive-md">
+        <thead>
+        <tr>
+            <th>Medicament Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Expiry Date</th>
+            <th>Usage</th>
+            <th>Type</th>
+            <th>Frequency</th>
+            <th>Time of day</th>
+            <th>Before Eating</th>
+            <th>Actions</th>
+        </tr>
+        <tbody>
+        <tr th:each="medicament : ${listMedicaments}">
+            <td th:text="${medicament.name}"></td>
+            <td th:text="${medicament.quantity}"></td>
+            <td th:text="${medicament.price}"></td>
+            <td th:text="${medicament.expiryDate}"></td>
+            <td th:text="${medicament.usage}"></td>
+            <td th:text="${medicament.type}"></td>
+            <td th:text="${medicament.frequency}"></td>
+            <td th:text="${medicament.timeOfDay}"></td>
+            <td th:text="${medicament.beforeEating}"></td>
+            <td><a th:href="@{/showFormForUpdate/{id} (id=${medicament.id})}" class="btn btn-primary">Update</a>
+                <a th:href="@{/deleteMedicament/{id} (id=${medicament.id})}" class="btn btn-danger">Delete</a>
+            </td>
+
+
+        </tr>
+
+        </tbody>
+        </thead>
+    </table>
+
+
+
+</div>
+</body>
+</html>

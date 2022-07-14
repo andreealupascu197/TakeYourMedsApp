@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Add a new Medicament!</title>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+          crossorigin="anonymous">
+</head>
+<body>
+
+<div style="margin-left:40px; margin-top:40px">
+    <h1>Treatment Management</h1>
+    <hr>
+
+    <form action="#" th:action="@{/saveMedicament}" th:object="${medicament}" method="POST">
+
+        Name<br>
+        <input type="text" th:field="*{name}"><br><br>
+
+        Quantity<br>
+        <input type="text" th:field="*{quantity}"><br><br>
+
+        Price<br>
+        <input type="text" th:field="*{price}"><br><br>
+
+        Expiry Date<br>
+        <input type="date" th:field="*{expiryDate}"><br><br>
+
+        Usage<br>
+        <select name="usage" th:field="*{usage}">
+        <option th:each="usage : ${T(ro.fasttarckit.treatment.domain.Usage).values()}"
+                th:value="${usage}" th:text="${usage}"></option>
+    </select><br><br>
+
+        Type<br>
+        <select name="type" th:field="*{type}">
+        <option th:each="type : ${T(ro.fasttarckit.treatment.domain.Type).values()}"
+                th:value="${type}" th:text="${type}"></option>
+    </select><br><br>
+
+        Frequency<br>
+        <input type="text" th:field="*{frequency}"><br><br>
+
+        Time of Day<br>
+        <select name="timeOfDay" th:field="*{timeOfDay}">
+        <option th:each="timeOfDay : ${T(ro.fasttarckit.treatment.domain.TimeOfDay).values()}"
+                th:value="${timeOfDay}" th:text="${timeOfDay}"></option>
+    </select><br><br>
+
+        Before Eating<br>
+        <input type="checkbox" th:field="*{beforeEating}"><br><br>
+
+        <button type="submit" class="btn btn-success"> Save medicament</button>
+    </form>
+</div>
+
+<br>
+<div>
+    <a th:href="@{/}">Go Back</a>
+</div>
+</body>
+</html>
