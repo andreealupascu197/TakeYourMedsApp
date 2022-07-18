@@ -1,7 +1,12 @@
 package ro.fasttarckit.treatment.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import ro.fasttarckit.treatment.domain.Medicament;
+import ro.fasttarckit.treatment.domain.Usage;
 import ro.fasttarckit.treatment.repository.MedicamentRepository;
 
 import java.util.List;
@@ -45,4 +50,15 @@ public class MedicamentServiceImplementation implements MedicamentService{
     public void deleteMedicamentById(long id) {
         this.medicamentRepository.deleteById(id);
     }
+
+    @Override
+    public Page<Medicament> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection) {
+        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
+                Sort.by(sortField).descending();
+
+        Pageable pageable = PageRequest.of(pageNo -1,pageSize, sort);
+        return this.medicamentRepository.findAll(pageable);
+    }
+
+
 }

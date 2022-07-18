@@ -21,15 +21,40 @@
     <table border="1" class="table table-striped table-responsive-md">
         <thead>
         <tr>
-            <th>Medicament Name</th>
-            <th>Quantity</th>
-            <th>Price</th>
-            <th>Expiry Date</th>
-            <th>Usage</th>
-            <th>Type</th>
-            <th>Frequency</th>
-            <th>Time of day</th>
-            <th>Before Eating</th>
+            <th> <a th:href="@{'/page/' + ${currentPage} + '?sortField=name&sortDir=' + ${reverseSortDir}}">
+                Medicament Name</a>
+            </th>
+
+            <th> <a th:href="@{'/page/' + ${currentPage} + '?sortField=quantity&sortDir=' + ${reverseSortDir}}">
+                Quantity</a>
+            </th>
+
+            <th> <a th:href="@{'/page/' + ${currentPage} + '?sortField=price&sortDir=' + ${reverseSortDir}}">
+                Price</a>
+            </th>
+            <th> <a th:href="@{'/page/' + ${currentPage} + '?sortField=expiryDate&sortDir=' + ${reverseSortDir}}">
+                Expiry Date</a>
+            </th>
+
+            <th> <a th:href="@{'/page/' + ${currentPage} + '?sortField=usage&sortDir=' + ${reverseSortDir}}">
+                Usage</a>
+            </th>
+
+            <th> <a th:href="@{'/page/' + ${currentPage} + '?sortField=type&sortDir=' + ${reverseSortDir}}">
+                Type</a>
+            </th>
+
+            <th> <a th:href="@{'/page/' + ${currentPage} + '?sortField=frequency&sortDir=' + ${reverseSortDir}}">
+                Frequency</a>
+
+            </th>
+
+            <th><a th:href="@{'/page/' + ${currentPage} + '?sortField=timeOfDay&sortDir=' + ${reverseSortDir}}">
+                Time of day</a>
+            </th>
+            <th> <a th:href="@{'/page/' + ${currentPage} + '?sortField=beforeEating&sortDir=' + ${reverseSortDir}}">
+                Before Eating</a>
+            </th>
             <th>Actions</th>
         </tr>
         <tbody>
@@ -46,16 +71,36 @@
             <td><a th:href="@{/showFormForUpdate/{id} (id=${medicament.id})}" class="btn btn-primary">Update</a>
                 <a th:href="@{/deleteMedicament/{id} (id=${medicament.id})}" class="btn btn-danger">Delete</a>
             </td>
-
-
         </tr>
-
         </tbody>
         </thead>
     </table>
 
+    <div th:if="${totalPages > 1}">
+        <div class="row col-sm-10">
 
+            <div class="col-sm-2">
+                Total Rows: [[${totalItems}]]
+            </div>
 
+            <div class="col-sm-1">
+                <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+                    <a th:if="${currentPage != i}" th:href="@{'/page/' + ${i} + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDir}}">[[${i}]]</a>
+                    <span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp &nbsp;
+             </span>
+            </div>
+
+            <div class="col-sm-1">
+                <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage +1} + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDir}}">Next</a>
+                <span th:unless="${currentPage < totalPages}">Next</span>
+            </div>
+
+            <div class="col-sm-1">
+                <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages} + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDir}}">Last</a>
+                <span th:unless="${currentPage < totalPages}">Last</span>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>
