@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ro.fasttarckit.treatment.domain.Medicament;
 import ro.fasttarckit.treatment.service.MedicamentService;
+import ro.fasttarckit.treatment.service.NewMedicamentError;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class MedicamentController {
 
     @GetMapping("/")
     public String viewHomePage(Model model) {
-         return findPaginated(1, "name", "asc", model);
+        return findPaginated(1, "name", "asc", model);
     }
 
     @GetMapping("/showNewMedicamentForm")
@@ -34,9 +35,24 @@ public class MedicamentController {
     @PostMapping("/saveMedicament")
     public String saveMedicament(@ModelAttribute("medicament") Medicament medicament) {
         //save medicament to db
-        medicamentService.saveMedicament(medicament);
-        return "redirect:/";
+        try {
+            medicamentService.saveMedicament(medicament);
+            return "redirect:/";
+        } catch (NewMedicamentError e) {
+            return "duplicated_medicament";
+        }
     }
+    @PostMapping("/updateMedicament")
+    public String updateMedicament(@ModelAttribute("medicament") Medicament medicament) {
+        //save medicament to db
+        try {
+            medicamentService.updateMedicament(medicament);
+            return "redirect:/";
+        } catch (NewMedicamentError e) {
+            return "duplicated_medicament";
+        }
+    }
+
 
     @GetMapping("/showFormForUpdate/{id}")
     public String showFormForUpdate(@PathVariable(value = "id") long id, Model model) {
@@ -57,9 +73,9 @@ public class MedicamentController {
 
     @GetMapping("/page/{pageNo}")
     public String findPaginated(@PathVariable(value = "pageNo") int pageNo,
-                                 @RequestParam("sortField") String sortField,
-                                 @RequestParam("sortDir") String sortDir,
-                                 Model model) {
+                                @RequestParam("sortField") String sortField,
+                                @RequestParam("sortDir") String sortDir,
+                                Model model) {
         int pageSize = 5;
 
         Page<Medicament> page = medicamentService.findPaginated(pageNo, pageSize, sortField, sortDir);
@@ -69,12 +85,20 @@ public class MedicamentController {
         model.addAttribute("totalPages", page.getTotalPages());
         model.addAttribute("totalItems", page.getTotalElements());
 
-        model.addAttribute("sortField",sortField);
+        model.addAttribute("sortField", sortField);
         model.addAttribute("sortDir", sortDir);
         model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 
         model.addAttribute("listMedicaments", listMedicaments);
         return "index";
+
+    }
+
+    @GetMapping("/generateReport")
+    public String generateReport(Model model) {
+        List<Medicament> medicaments = medicamentService.generateReport();
+        model.addAttribute("medicaments", medicaments);
+        return "report";
 
     }
 }

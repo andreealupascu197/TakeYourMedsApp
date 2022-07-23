@@ -1,11 +1,12 @@
 package ro.fasttarckit.treatment.domain;
 
 public enum TimeOfDay {
+    ALL,
     MORNING,
-    AFTERNOON,
-    EVENING,
     MORNING_AND_AFTERNOON,
     MORNING_AND_EVENING,
+    AFTERNOON,
     AFTERNOON_AND_EVENING,
-    ALL;
+    EVENING;
+
 }

@@ -1,6 +1,5 @@
 package ro.fasttarckit.treatment.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,7 +10,6 @@ import java.sql.Date;
 @Entity
 @Table(name = "medicaments")
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 public class Medicament {
