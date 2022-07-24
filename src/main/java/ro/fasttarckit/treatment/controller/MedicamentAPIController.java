@@ -1,7 +1,6 @@
 package ro.fasttarckit.treatment.controller;
 
 import org.springframework.data.domain.Page;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ro.fasttarckit.treatment.domain.Medicament;
 import ro.fasttarckit.treatment.domain.TimeOfDay;

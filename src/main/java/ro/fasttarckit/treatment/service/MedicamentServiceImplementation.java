@@ -5,16 +5,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
 import ro.fasttarckit.treatment.domain.Medicament;
 import ro.fasttarckit.treatment.domain.TimeOfDay;
 import ro.fasttarckit.treatment.repository.MedicamentRepository;
-
 import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import static java.util.stream.Collectors.toList;
 
 

@@ -41,6 +41,13 @@ public class MedicamentController {
         }
     }
 
+    @GetMapping("/showFormForUpdate/{id}")
+    public String showFormForUpdate(@PathVariable(value = "id") long id, Model model) {
+        Medicament medicament = medicamentService.getMedicamentById(id);
+        model.addAttribute("medicament", medicament);
+        return "update_medicament";
+    }
+
     @PostMapping("/updateMedicament")
     public String updateMedicament(@ModelAttribute("medicament") Medicament medicament) {
         try {
@@ -49,13 +56,6 @@ public class MedicamentController {
         } catch (NewMedicamentError e) {
             return "duplicated_medicament";
         }
-    }
-
-    @GetMapping("/showFormForUpdate/{id}")
-    public String showFormForUpdate(@PathVariable(value = "id") long id, Model model) {
-        Medicament medicament = medicamentService.getMedicamentById(id);
-        model.addAttribute("medicament", medicament);
-        return "update_medicament";
     }
 
     @GetMapping("/deleteMedicament/{id}")
