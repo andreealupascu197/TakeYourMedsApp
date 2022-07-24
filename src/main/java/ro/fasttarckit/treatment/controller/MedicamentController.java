@@ -26,7 +26,6 @@ public class MedicamentController {
 
     @GetMapping("/showNewMedicamentForm")
     public String showNewMedicamentForm(Model model) {
-        //create model attribute to bind from data
         Medicament medicament = new Medicament();
         model.addAttribute("medicament", medicament);
         return "new_medicament";
@@ -34,7 +33,6 @@ public class MedicamentController {
 
     @PostMapping("/saveMedicament")
     public String saveMedicament(@ModelAttribute("medicament") Medicament medicament) {
-        //save medicament to db
         try {
             medicamentService.saveMedicament(medicament);
             return "redirect:/";
@@ -42,9 +40,9 @@ public class MedicamentController {
             return "duplicated_medicament";
         }
     }
+
     @PostMapping("/updateMedicament")
     public String updateMedicament(@ModelAttribute("medicament") Medicament medicament) {
-        //save medicament to db
         try {
             medicamentService.updateMedicament(medicament);
             return "redirect:/";
@@ -53,20 +51,15 @@ public class MedicamentController {
         }
     }
 
-
     @GetMapping("/showFormForUpdate/{id}")
     public String showFormForUpdate(@PathVariable(value = "id") long id, Model model) {
-        //get medicament from service
         Medicament medicament = medicamentService.getMedicamentById(id);
-        //set employee as a model attibuteto pre populate the form data
-
         model.addAttribute("medicament", medicament);
         return "update_medicament";
     }
 
     @GetMapping("/deleteMedicament/{id}")
     public String deleteMedicament(@PathVariable(value = "id") long id) {
-        //call delete medicament method
         this.medicamentService.deleteMedicamentById(id);
         return "redirect:/";
     }
@@ -91,7 +84,6 @@ public class MedicamentController {
 
         model.addAttribute("listMedicaments", listMedicaments);
         return "index";
-
     }
 
     @GetMapping("/generateReport")
@@ -99,6 +91,5 @@ public class MedicamentController {
         List<Medicament> medicaments = medicamentService.generateReport();
         model.addAttribute("medicaments", medicaments);
         return "report";
-
     }
 }

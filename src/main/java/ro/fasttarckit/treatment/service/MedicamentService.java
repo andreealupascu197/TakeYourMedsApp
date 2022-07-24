@@ -12,5 +12,4 @@ public interface  MedicamentService {
     void deleteMedicamentById(long id);
     Page<Medicament> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection);
     List<Medicament> generateReport();
-
 }

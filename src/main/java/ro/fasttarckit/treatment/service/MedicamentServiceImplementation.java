@@ -5,6 +5,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
 import ro.fasttarckit.treatment.domain.Medicament;
 import ro.fasttarckit.treatment.domain.TimeOfDay;
 import ro.fasttarckit.treatment.repository.MedicamentRepository;
@@ -25,7 +26,6 @@ public class MedicamentServiceImplementation implements MedicamentService {
 
     public MedicamentServiceImplementation(MedicamentRepository medicamentRepository) {
         this.medicamentRepository = medicamentRepository;
-
     }
 
     @Override
@@ -42,7 +42,6 @@ public class MedicamentServiceImplementation implements MedicamentService {
             }
         }
         medicamentRepository.save(newMedicament);
-
     }
 
     @Override
@@ -83,7 +82,7 @@ public class MedicamentServiceImplementation implements MedicamentService {
         if (localTime < 12) {
             return medicamentRepository.findAll().stream()
                     .sorted(Comparator.comparing(Medicament::getTimeOfDay)
-                            .thenComparing(m->!m.getBeforeEating()))
+                            .thenComparing(m -> !m.getBeforeEating()))
                     .collect(Collectors.toList());
 
 
@@ -95,7 +94,7 @@ public class MedicamentServiceImplementation implements MedicamentService {
                             || m.getTimeOfDay().equals(TimeOfDay.EVENING)
                             || m.getTimeOfDay().equals(TimeOfDay.ALL))
                     .sorted(Comparator.comparing(Medicament::getTimeOfDay)
-                            .thenComparing(m->!m.getBeforeEating()))
+                            .thenComparing(m -> !m.getBeforeEating()))
                     .collect(toList());
         } else {
             return medicamentRepository.findAll().stream().
@@ -103,10 +102,8 @@ public class MedicamentServiceImplementation implements MedicamentService {
                             || m.getTimeOfDay().equals(TimeOfDay.AFTERNOON_AND_EVENING)
                             || m.getTimeOfDay().equals(TimeOfDay.ALL))
                     .sorted(Comparator.comparing(Medicament::getTimeOfDay)
-                            .thenComparing(m->!m.getBeforeEating()))
+                            .thenComparing(m -> !m.getBeforeEating()))
                     .collect(toList());
         }
     }
-
-
 }

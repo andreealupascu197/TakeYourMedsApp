@@ -35,24 +35,24 @@
 
         Usage<br>
         <select name="usage" th:field="*{usage}">
-        <option th:each="usage : ${T(ro.fasttarckit.treatment.domain.Usage).values()}"
-                th:value="${usage}" th:text="${usage}"></option>
-    </select><br><br>
+            <option th:each="usage : ${T(ro.fasttarckit.treatment.domain.Usage).values()}"
+                    th:value="${usage}" th:text="${usage}"></option>
+        </select><br><br>
 
         Type<br>
         <select name="type" th:field="*{type}">
-        <option th:each="type : ${T(ro.fasttarckit.treatment.domain.Type).values()}"
-                th:value="${type}" th:text="${type}"></option>
-    </select><br><br>
+            <option th:each="type : ${T(ro.fasttarckit.treatment.domain.Type).values()}"
+                    th:value="${type}" th:text="${type}"></option>
+        </select><br><br>
 
         Frequency<br>
         <input type="number" th:field="*{frequency}"><br><br>
 
         Time of Day<br>
         <select name="timeOfDay" th:field="*{timeOfDay}">
-        <option th:each="timeOfDay : ${T(ro.fasttarckit.treatment.domain.TimeOfDay).values()}"
-                th:value="${timeOfDay}" th:text="${timeOfDay}"></option>
-    </select><br><br>
+            <option th:each="timeOfDay : ${T(ro.fasttarckit.treatment.domain.TimeOfDay).values()}"
+                    th:value="${timeOfDay}" th:text="${timeOfDay}"></option>
+        </select><br><br>
 
         Before Eating<br>
         <input type="checkbox" th:field="*{beforeEating}"><br><br>
@@ -65,12 +65,13 @@
 <div>
     <a th:href="@{/}">Go Back</a>
 </div>
+
 <script>
     let now = new Date(),
-        minDate = now.toISOString().substring(0,10);
+        minDate = now.toISOString().substring(0, 10);
     $('#expiryDate').prop('min', minDate);
 
-    $(document).ready( function() {
+    $(document).ready(function () {
         let now = new Date();
         let month = (now.getMonth() + 1);
         let day = now.getDate();

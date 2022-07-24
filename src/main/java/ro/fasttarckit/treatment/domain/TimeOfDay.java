@@ -8,5 +8,4 @@ public enum TimeOfDay {
     AFTERNOON,
     AFTERNOON_AND_EVENING,
     EVENING;
-
 }

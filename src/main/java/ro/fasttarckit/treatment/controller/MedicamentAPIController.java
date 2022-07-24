@@ -23,8 +23,6 @@ public class MedicamentAPIController {
         this.medicamentService = medicamentService;
     }
 
-
-
     @PostMapping("/medicaments")
     public String saveMedicament(
             @RequestParam("name") String name,
@@ -55,6 +53,7 @@ public class MedicamentAPIController {
             return "Could not be added";
         }
     }
+
     @PutMapping("/medicaments/{id}")
     public String updateMedicament(
             @PathVariable(value = "id") long id,
@@ -108,7 +107,6 @@ public class MedicamentAPIController {
         return page.getContent().stream()
                 .map(MedicamentDTO::new)
                 .collect(Collectors.toList());
-
     }
 
     @GetMapping("/medicaments/report")
@@ -116,6 +114,5 @@ public class MedicamentAPIController {
         return medicamentService.generateReport().stream()
                 .map(MedicamentDTO::new)
                 .collect(Collectors.toList());
-
     }
 }

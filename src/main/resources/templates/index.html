@@ -10,8 +10,8 @@
           integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
           crossorigin="anonymous">
 </head>
-<body th:style="'background-image:url(' + @{/img/homet.jpg} + '); background-repeat: no-repeat, repeat; background-size: cover;'">
 
+<body th:style="'background-image:url(' + @{/img/homet.jpg} + '); background-repeat: no-repeat, repeat; background-size: cover;'">
 <div class="container my-2">
     <h1>Take your Meds!</h1>
     <br>
@@ -51,17 +51,19 @@
 
             <th><a th:href="@{'/page/' + ${currentPage} + '?sortField=frequency&sortDir=' + ${reverseSortDir}}">
                 Frequency</a>
-
             </th>
 
             <th><a th:href="@{'/page/' + ${currentPage} + '?sortField=timeOfDay&sortDir=' + ${reverseSortDir}}">
                 Time of day</a>
             </th>
+
             <th><a th:href="@{'/page/' + ${currentPage} + '?sortField=beforeEating&sortDir=' + ${reverseSortDir}}">
                 Before Eating</a>
             </th>
+
             <th>Actions</th>
         </tr>
+
         <tbody>
         <tr th:each="medicament : ${listMedicaments}">
             <td th:text="${medicament.name}"></td>
