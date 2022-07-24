@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Your daily report!</title>
+    <link rel="icon" type="image/x-icon" href="/img/logo.png">
 
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
           integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
           crossorigin="anonymous">
 </head>
-<body>
+<body th:style="'background-image:url(' + @{/img/report.png} + '); background-repeat: no-repeat, repeat; background-size: cover;'">
 
 <div style="margin-left:40px; margin-right:40px; margin-top:40px">
     <div>
@@ -17,13 +18,13 @@
             Check out what meds you need to take today
         </h3>
 
-        <h6> This option allows you to check the remaining medication until the end of day, based on the current time.
-        </h6>
+        <h6><i> This option allows you to check the remaining medication until the end of day, based on the current time.
+        </i></h6>
     </div>
 
     <br>
     <div>
-        <table border="1" class="table table-striped table-responsive-md">
+        <table border="1" class="table table-striped table-responsive-md" style="background-color: white">
             <thead>
             <tr>
                 <th>Name</th>

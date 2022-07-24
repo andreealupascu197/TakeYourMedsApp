@@ -82,8 +82,8 @@ public class MedicamentServiceImplementation implements MedicamentService {
         int localTime = localDateTime.toLocalTime().getHour();
         if (localTime < 12) {
             return medicamentRepository.findAll().stream()
-                    .sorted(Comparator.comparing(Medicament::getTimeOfDay)
-                            .thenComparing(Medicament::getBeforeEating))
+                    .sorted(Comparator.comparing(Medicament::getTimeOfDay).reversed()
+                            .thenComparing(Medicament::getBeforeEating).reversed())
                     .collect(Collectors.toList());
 
 
@@ -94,16 +94,16 @@ public class MedicamentServiceImplementation implements MedicamentService {
                             || m.getTimeOfDay().equals(TimeOfDay.AFTERNOON_AND_EVENING)
                             || m.getTimeOfDay().equals(TimeOfDay.EVENING)
                             || m.getTimeOfDay().equals(TimeOfDay.ALL))
-                    .sorted(Comparator.comparing(Medicament::getTimeOfDay)
-                            .thenComparing(Medicament::getBeforeEating))
+                    .sorted(Comparator.comparing(Medicament::getTimeOfDay).reversed()
+                            .thenComparing(Medicament::getBeforeEating).reversed())
                     .collect(toList());
         } else {
             return medicamentRepository.findAll().stream().
                     filter(m -> m.getTimeOfDay().equals(TimeOfDay.EVENING)
                             || m.getTimeOfDay().equals(TimeOfDay.AFTERNOON_AND_EVENING)
                             || m.getTimeOfDay().equals(TimeOfDay.ALL))
-                    .sorted(Comparator.comparing(Medicament::getTimeOfDay)
-                            .thenComparing(Medicament::getBeforeEating))
+                    .sorted(Comparator.comparing(Medicament::getTimeOfDay).reversed()
+                            .thenComparing(Medicament::getBeforeEating).reversed())
                     .collect(toList());
         }
     }
