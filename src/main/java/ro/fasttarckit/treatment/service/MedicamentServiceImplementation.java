@@ -18,7 +18,6 @@ import static java.util.stream.Collectors.toList;
 @Service
 public class MedicamentServiceImplementation implements MedicamentService {
 
-
     private MedicamentRepository medicamentRepository;
 
     public MedicamentServiceImplementation(MedicamentRepository medicamentRepository) {
@@ -60,7 +59,7 @@ public class MedicamentServiceImplementation implements MedicamentService {
 
     @Override
     public void deleteMedicamentById(long id) {
-        this.medicamentRepository.deleteById(id);
+        medicamentRepository.deleteById(id);
     }
 
     @Override
@@ -69,7 +68,7 @@ public class MedicamentServiceImplementation implements MedicamentService {
                 Sort.by(sortField).descending();
 
         Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
-        return this.medicamentRepository.findAll(pageable);
+        return medicamentRepository.findAll(pageable);
     }
 
     @Override

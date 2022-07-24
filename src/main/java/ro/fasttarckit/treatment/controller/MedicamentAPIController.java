@@ -9,7 +9,6 @@ import ro.fasttarckit.treatment.domain.Usage;
 import ro.fasttarckit.treatment.dto.MedicamentDTO;
 import ro.fasttarckit.treatment.service.MedicamentService;
 import ro.fasttarckit.treatment.service.NewMedicamentError;
-
 import java.sql.Date;
 import java.util.List;
 import java.util.stream.Collectors;
