@@ -9,5 +9,6 @@ public enum Type {
     INHALERS,
     INJECTIONS,
     PATCHES,
-    EFFERVESCENT;
+    EFFERVESCENT,
+    BAGS;
 }

@@ -8,10 +8,12 @@ import org.springframework.stereotype.Service;
 import ro.fasttarckit.treatment.domain.Medicament;
 import ro.fasttarckit.treatment.domain.TimeOfDay;
 import ro.fasttarckit.treatment.repository.MedicamentRepository;
+
 import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+
 import static java.util.stream.Collectors.toList;
 
 
@@ -86,6 +88,7 @@ public class MedicamentServiceImplementation implements MedicamentService {
             return medicamentRepository.findAll().stream()
                     .filter(m -> m.getTimeOfDay().equals(TimeOfDay.AFTERNOON)
                             || m.getTimeOfDay().equals(TimeOfDay.MORNING_AND_AFTERNOON)
+                            || m.getTimeOfDay().equals(TimeOfDay.MORNING_AND_EVENING)
                             || m.getTimeOfDay().equals(TimeOfDay.AFTERNOON_AND_EVENING)
                             || m.getTimeOfDay().equals(TimeOfDay.EVENING)
                             || m.getTimeOfDay().equals(TimeOfDay.ALL))
@@ -95,6 +98,7 @@ public class MedicamentServiceImplementation implements MedicamentService {
         } else {
             return medicamentRepository.findAll().stream().
                     filter(m -> m.getTimeOfDay().equals(TimeOfDay.EVENING)
+                            || m.getTimeOfDay().equals(TimeOfDay.MORNING_AND_EVENING)
                             || m.getTimeOfDay().equals(TimeOfDay.AFTERNOON_AND_EVENING)
                             || m.getTimeOfDay().equals(TimeOfDay.ALL))
                     .sorted(Comparator.comparing(Medicament::getTimeOfDay)
